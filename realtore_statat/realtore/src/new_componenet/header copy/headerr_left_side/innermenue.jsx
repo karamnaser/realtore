@@ -7,24 +7,26 @@ class InnerMenue extends React.Component{
         };
     }
     render(){
-        
+        console.log(this.state.iteams);
         let Innermenuelist=this.state.iteams.map((iteam)=>{
-            console.log("iteam is:",iteam)
+            
             return(
-                <ul className="inneriteam-list">
-                {iteam.map((obj)=>{
+    
+                iteam.map((obj)=>{
                     return(
                         <li className="inneriteam">
                         <a href={obj["href"]}>{obj["title"]}</a>
-                        </li>)})}
-                        </ul>)
-                    }
-                    );
-                    return (
-                        {Innermenuelist}
-                        )
-                        
-                        
-                    }
-                } 
-                export default  InnerMenue;
+                        </li>)})
+                    
+                    
+                    )
+                });
+
+                return (
+                    <ul className="inneriteam-list">{Innermenuelist}</ul>
+                    )
+                    
+                    
+                }
+            } 
+            export default  InnerMenue;
