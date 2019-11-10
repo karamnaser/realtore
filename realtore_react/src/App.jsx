@@ -10,6 +10,7 @@ import  { BrowserRouter as Router
   ,Switch
   ,Route
 } from "react-router-dom";
+import SinglePageApartment from './new_componenet/single_page_apartment/single_page_apartment'
  
 function App() {
 
@@ -34,13 +35,29 @@ function App() {
 
     return choosin_appartment
     
-}        
+}
+
+let get_apartment_id=(e)=>{
+
+      target=e.target
+      target_id=target.getAttribute("apartment-id");
+      return target_id;
+
+}
   
   return (
     <Router>
     <div className="App">
     <HeaderNave/>
     <Switch>
+
+          <Route path={} component={()=><SinglePageApartment iteam={slice_arr()}
+                     main_image={"main_image"}
+                     title={"title"}
+                     bool={true}
+                     />}>
+            
+          </Route>
       
           <Route path="/sell" component={()=><Form iteam={slice_arr()}
                      main_image={"main_image"}
@@ -49,6 +66,7 @@ function App() {
                      />}>
             
           </Route>
+          
 
         <Route path="/apartments" component={()=><Form iteam={apartments}
                   main_image={"main_image"}

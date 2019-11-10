@@ -4,6 +4,8 @@ import GallaryImg from './gallary_img.jsx';
 import '../img.css';
 import '../paragraphs.css';
 import Heart from './heart'
+import {Link} from "react-router-dom";
+
 
 class Gallary extends React.Component{
     
@@ -54,36 +56,43 @@ class Gallary extends React.Component{
        
         let gallery_got_footer=this.props.gotfooter;
 
-        let iteam_div = this.props.items.map((item) => {
+        let iteam_div = this.props.items.map((item,i) => {
+                   
+            return ( <Link to={"apartment"+i}>
 
-            return <div key={item["id"]} 
-                        className="div col-4 position-relative">
+                        <div key={item["id"]} 
+                             className="div col-4 position-relative"
+                             apartment-id={i}
+                             onClick={()=>this.props.onClick(e)}>
+                             
 
-                        <div style={{boxShadow:"0px 0px 0px 1px"}} className="shadow-div">
+                                <div style={{boxShadow:"0px 0px 0px 1px"}} className="shadow-div">
 
-                            <GallarymenDetails header={item[this.props.title]}/>
+                                        <GallarymenDetails header={item[this.props.title]}/>
 
-                            <GallaryImg src={require("../"+item[this.props.main_image])}/>
+                                        <GallaryImg src={require("../"+item[this.props.main_image])}/>
 
-                            {
-                                gallery_got_footer
+                                        {
+                                            gallery_got_footer
 
-                                    &&
+                                                 &&
 
-                               <GallarymenDetails header={getapartmentDiscreption(item)}/>
-
-
-                            }
-                             <Heart onMouseOver={display_heart_on_hover.bind(this)}
-                                    onMouseLeave={disaple_heart_on_leave.bind(this)}/>
+                                        <GallarymenDetails header={getapartmentDiscreption(item)}/>
 
 
-                             <p className="apartment-price">{item["price"] &&"$"+item["price"]}</p> 
+                                        }
+                                        <Heart onMouseOver={display_heart_on_hover.bind(this)}
+                                               onMouseLeave={disaple_heart_on_leave.bind(this)}/>
 
-                        </div>
+
+                                        <p className="apartment-price">{item["price"] &&"$"+item["price"]}</p> 
+
+                                </div>
                         
-                    </div>
-        });
+                        </div>
+
+                   </Link>
+        )});
 
         return(  
                     <div className="row">
