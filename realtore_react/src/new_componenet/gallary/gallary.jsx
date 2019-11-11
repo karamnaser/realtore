@@ -8,6 +8,11 @@ import {Link} from "react-router-dom";
 
 
 class Gallary extends React.Component{
+    constructor(props){
+        super(props);
+
+    }
+ 
     
     render(){
 
@@ -57,16 +62,16 @@ class Gallary extends React.Component{
         let gallery_got_footer=this.props.gotfooter;
 
         let iteam_div = this.props.items.map((item,i) => {
-                   
-            return ( <Link to={"apartment"+i}>
+
+            return ( 
 
                         <div key={item["id"]} 
                              className="div col-4 position-relative"
                              apartment-id={i}
-                             onClick={()=>this.props.onClick(e)}>
-                             
-
+                        >
+                            <Link to={"apartment/"+item["id"]}>
                                 <div style={{boxShadow:"0px 0px 0px 1px"}} className="shadow-div">
+                                
 
                                         <GallarymenDetails header={item[this.props.title]}/>
 
@@ -86,12 +91,15 @@ class Gallary extends React.Component{
 
 
                                         <p className="apartment-price">{item["price"] &&"$"+item["price"]}</p> 
+                                        
 
                                 </div>
+
+                                </Link>
                         
                         </div>
 
-                   </Link>
+                   
         )});
 
         return(  

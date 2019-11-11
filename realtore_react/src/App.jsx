@@ -37,13 +37,7 @@ function App() {
     
 }
 
-let get_apartment_id=(e)=>{
 
-      target=e.target
-      target_id=target.getAttribute("apartment-id");
-      return target_id;
-
-}
   
   return (
     <Router>
@@ -51,13 +45,9 @@ let get_apartment_id=(e)=>{
     <HeaderNave/>
     <Switch>
 
-          <Route path={} component={()=><SinglePageApartment iteam={slice_arr()}
-                     main_image={"main_image"}
-                     title={"title"}
-                     bool={true}
-                     />}>
+          <Route path={"/apartment/:id"} component={SinglePageApartment}/>
             
-          </Route>
+    
       
           <Route path="/sell" component={()=><Form iteam={slice_arr()}
                      main_image={"main_image"}

@@ -1,0 +1,69 @@
+.apartment {
+    width: 50%;
+    margin: auto;
+    position: relative;
+}
+
+.apartment .heart-img {
+    position: absolute;
+}
+
+.apartment #red-heart,
+.apartment #black-heart {
+    position: absolute;
+}
+
+.apartment #black-heart {
+    right: 0px;
+}
+
+.apartment #red-heart {
+    right: 4px;
+}
+
+.apartment .apartment-price {
+    bottom: 10px;
+}
+
+.img-wraper {
+    position: absolute;
+    top: 38px;
+    width: 0px;
+    height: 90%;
+    transition: width 1s;
+    transition-timing-function: linear;
+}
+
+.img-wraper img {
+    width: 100%;
+    height: 100%;
+}
+
+.img-wraper button {
+    width: 0px;
+    transition: width 1s;
+    transition-timing-function: linear;
+}
+
+.right-arrow {
+    border: 0px;
+    background: none;
+    width: 10%;
+    position: absolute;
+    top: 280px;
+    right: 0px;
+}
+
+.left-arrow {
+    border: 0px;
+    background: none;
+    width: 10%;
+    position: absolute;
+    top: 280px;
+    left: 0px;
+}
+
+.right-arrow img,
+.left-arrow img {
+    width: 100%;
+}

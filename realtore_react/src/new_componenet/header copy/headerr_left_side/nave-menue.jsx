@@ -50,7 +50,7 @@ class NaveMenue extends React.Component{
 
 
                         <Link className="main-link" 
-                              to={obj_iteam.label}
+                              to={"/" + obj_iteam.label}
                         >
                               
                               
