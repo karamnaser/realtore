@@ -4,5 +4,6 @@
     bottom: 130px;
     left: 40px;
     font-size: 41px;
+    z-index: 999;
     color: white;
 }

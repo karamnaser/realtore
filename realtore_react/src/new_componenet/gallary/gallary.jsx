@@ -31,33 +31,44 @@ class Gallary extends React.Component{
                 target_elemnt.style.opacity="0";
 
         }
+        
+
         function getapartmentDiscreption(aprtment){
 
-            var apartment_discription;
+            var apartment_discription="";
 
-            var apartments_bed=aprtment["number_of_beds"]+" beds ";
+            if(aprtment["number_of_beds"]){
 
-            var apartments_rooms=aprtment["number_of_rooms"]+" room ";
-
-            var apartments_size=aprtment["sqft"]+" sqft"+"\n";
-
-            var apartments_addres=aprtment["address"];
-
-            if(apartments_addres!=undefined){
-
-                apartment_discription=apartments_bed+apartments_rooms+apartments_size+apartments_addres;
+                var apartments_bed=aprtment["number_of_beds"]+" beds ";
+                apartment_discription+=apartments_bed;
 
             }
+        
+            if(aprtment["number_of_rooms"]){
 
-            else{
-
-                apartment_discription=apartments_bed+apartments_rooms+apartments_size;
+                var apartments_rooms=aprtment["number_of_rooms"]+" room ";
+                apartment_discription+=apartments_rooms;
 
             }
+        
+            if(aprtment["sqft"]){
 
+                var apartments_size=aprtment["sqft"]+" sqft"+"\n";
+                apartment_discription+=apartments_size;
+
+            }
+        
+            if(aprtment["address"]){
+
+                var apartments_addres=aprtment["address"];
+                apartment_discription+= apartments_addres;
+
+            }
+        
             return apartment_discription;
             
         }
+        
        
         let gallery_got_footer=this.props.gotfooter;
 

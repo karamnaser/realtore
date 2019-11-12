@@ -11,6 +11,7 @@
 .apartment #red-heart,
 .apartment #black-heart {
     position: absolute;
+    z-index: 999;
 }
 
 .apartment #black-heart {
@@ -28,15 +29,18 @@
 .img-wraper {
     position: absolute;
     top: 38px;
-    width: 0px;
+    width: 100%;
     height: 90%;
-    transition: width 1s;
-    transition-timing-function: linear;
+    overflow: hidden;
 }
 
-.img-wraper img {
+.apartments-imges {
     width: 100%;
     height: 100%;
+    position: relative;
+    left: 800px;
+    transition: left 1s,right 1s;
+    transition-timing-function: linear;
 }
 
 .img-wraper button {
@@ -65,5 +69,5 @@
 
 .right-arrow img,
 .left-arrow img {
-    width: 100%;
+    width: 80%;
 }

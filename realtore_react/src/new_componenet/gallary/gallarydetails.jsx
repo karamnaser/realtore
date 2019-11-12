@@ -4,7 +4,7 @@ class GallarymenDetails extends React.Component{
 
         return(
                     <div className="Gallary-header">
-                        <p>
+                        <p style={{margin:"0px"}}>
 
                         {this.props.header}
 

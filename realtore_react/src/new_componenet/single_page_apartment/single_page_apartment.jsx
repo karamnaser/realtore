@@ -15,7 +15,9 @@ function SinglePageApartment(props){
 
     let id=parseInt(pathway)
 
-    let previous_img=0;
+    let index=0
+
+    let target=document.getElementsByClassName("apartments-imges")
     return (
         
         <div  className="apartment  position-relative">
@@ -45,7 +47,7 @@ function SinglePageApartment(props){
                                  <div className="img-wraper position-absolute">
                                 
 
-                                        <img src={require("../"+iteam)}/>
+                                        <img className="apartments-imges" src={require("../"+iteam)}/>
 
             
                                 </div>
@@ -57,59 +59,70 @@ function SinglePageApartment(props){
 
                 </div>
 
-                <button onClick={()=>{
-                                    
-                                    let target=document.getElementsByClassName("img-wraper")
-                                    let index=Math.floor((Math.random()*(target.length-1)))
+                <button  className="right-arrow" 
+                          onClick={()=>{
 
-                                     if(target[index]==""){
-                                        if(index>0){
-                                        index-=1
-                                        }
-                                        else{
-                                            index+=1                                        }
-                                     }
+                            if(index>target.length-1){
 
-                                     if(target[index].style.width!="100%"){
-                                        target[index].style.width="100%"
-                                      }
-                                      
-                                      else{
+                              index=0
 
-                                        target[index].style.width="0px"
+                              let counter=0
 
-                                      }
+                              while(counter<=target.length-1){
 
-                                        console.log("im clicked")
+                                  target[counter].style.left="800px"
+                                  counter++
 
-                                        previous_img=index
-                                    }}  
-                                    className="right-arrow"><img src={rightarrowicon}/></button>
+                              }
+
+                              return
+
+                            }
+                            
+                              target[index].style.left="0px"
+                              
+
+                            index++
+                          }
+                        }> 
+                      
+         
+                        <img src={rightarrowicon}/>
+                                     
+                                     
+                </button>
                     
 
-                <button onClick={()=>{
+                <button className="left-arrow" 
+                        onClick={()=>{
                                     
-                                    let target=document.getElementsByClassName("img-wraper")
-                                    let index=Math.floor((Math.random()*(target.length-1)))
+                          if(index>target.length-1){
 
-                                    if(previous_img==index){
-                                        index=Math.floor((Math.random()*(target.length-1)))
-                                     }
+                            index=0
 
-                                      if(target[index].style.width!="100%" && previous_img!=index){
-                                        target[index].style.width="100%"
-                                      }
-                                      
-                                      else{
+                            let counter=0
 
-                                        target[index].style.width="0px"
+                            while(counter<=target.length-1){
 
-                                      }
+                                target[counter].style.left="800px"
+                                counter++
 
-                                      previous_img=index
+                            }
 
-                                        console.log("im clicked")
-                                    }}   className="left-arrow"><img src={leftarrowicon}/></button>
+                            return
+                          }
+                        
+                          target[index].style.left="0px";
+
+                          index++
+                        }
+                      }>  
+
+
+                        <img src={leftarrowicon}/>
+
+
+                </button>
                         
          </div>
 
@@ -133,25 +146,34 @@ function disaple_heart_on_leave(event) {
 }
 function getapartmentDiscreption(aprtment){
 
-    var apartment_discription;
+    var apartment_discription="";
 
-    var apartments_bed=aprtment["number_of_beds"]+" beds ";
+    if(aprtment["number_of_beds"]){
 
-    var apartments_rooms=aprtment["number_of_rooms"]+" room ";
-
-    var apartments_size=aprtment["sqft"]+" sqft"+"\n";
-
-    var apartments_addres=aprtment["address"];
-
-    if(apartments_addres!=undefined){
-
-        apartment_discription=apartments_bed+apartments_rooms+apartments_size+apartments_addres;
+        var apartments_bed=aprtment["number_of_beds"]+" beds ";
+        apartment_discription+=apartments_bed;
 
     }
 
-    else{
 
-        apartment_discription=apartments_bed+apartments_rooms+apartments_size;
+    if(aprtment["number_of_rooms"]){
+
+        var apartments_rooms=aprtment["number_of_rooms"]+" room ";
+        apartment_discription+=apartments_rooms;
+
+    }
+
+    if(aprtment["sqft"]){
+
+        var apartments_size=aprtment["sqft"]+" sqft"+"\n";
+        apartment_discription+=apartments_size;
+
+    }
+
+    if(aprtment["address"]){
+
+        var apartments_addres=aprtment["address"];
+        apartment_discription+= apartments_addres
 
     }
 
