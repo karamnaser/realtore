@@ -1,6 +1,6 @@
 const navigation = [
     {
-        label: 'Buy',
+        label: 'Home',
         innerMenu: [
             [{title: "Home fo sale"}, {title: "Senior Housing", href: "http://new-york.com"}],
             [{title: "Homes Values"}, {title: "Home Buying Tips", href: "http://new-york.com"}, {title: "Home Selling Tips",href: "http://new-york.com"}],

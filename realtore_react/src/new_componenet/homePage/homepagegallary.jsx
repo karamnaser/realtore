@@ -1,19 +1,17 @@
 import React from 'react';
-import GallarymenDetails from './gallarydetails.jsx';
-import GallaryImg from './gallary_img.jsx';
+import GallarymenDetails from '../gallary/gallarydetails.jsx';
+import GallaryImg from '../gallary/gallary_img.jsx';
 import '../img.css';
 import '../paragraphs.css';
-import Heart from './heart'
 import {Link} from "react-router-dom";
+import Heart from '../gallary/heart'
 
 
-class Gallary extends React.Component{
+class HomePageGallary extends React.Component{
     constructor(props){
         super(props);
 
     }
-   
-     
  
     
     render(){
@@ -74,28 +72,28 @@ class Gallary extends React.Component{
        
         let gallery_got_footer=this.props.gotfooter;
 
-        let iteam_div = this.props.items.map((item,i) => {
+        let iteam_div = this.props.items.map((iteam,i) => {
 
             return ( 
 
-                        <div key={item["id"]} 
+                        <div key={iteam["id"]} 
                              className="div col-4 position-relative"
                              apartment-id={i}
                         >
-                            <Link to={"apartment/"+item["id"]}>
+                            <Link to={"apartment/"+iteam["id"]}>
                                 <div style={{boxShadow:"0px 0px 0px 1px"}} className="shadow-div">
                                 
 
-                                        <GallarymenDetails header={item[this.props.title]}/>
+                                        <GallarymenDetails header={iteam["title"]}/>
 
-                                        <GallaryImg src={require(`../${this.props.img_type}/`+item[this.props.img_sorce])}/>
+                                        <GallaryImg src={require("../apartments/"+iteam["main_image"])}/>
 
                                         {
                                             gallery_got_footer
 
                                                  &&
 
-                                        <GallarymenDetails header={getapartmentDiscreption(item)}/>
+                                        <GallarymenDetails header={getapartmentDiscreption(iteam)}/>
 
 
                                         }
@@ -103,7 +101,7 @@ class Gallary extends React.Component{
                                                onMouseLeave={disaple_heart_on_leave.bind(this)}/>
 
 
-                                        <p className="apartment-price">{item["price"] &&"$"+item["price"]}</p> 
+                                        <p className="apartment-price">{iteam["price"] &&"$"+iteam["price"]}</p> 
                                         
 
                                 </div>
@@ -116,7 +114,8 @@ class Gallary extends React.Component{
         )});
 
         return(  
-                    <div className="row">
+                    <div className="row"
+                          style={{margin : "50px 0px"}}>
 
                         {iteam_div}
 
@@ -127,4 +126,4 @@ class Gallary extends React.Component{
     
 }
 
-export default Gallary;
+export default HomePageGallary;

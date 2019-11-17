@@ -3,10 +3,7 @@ import magglass from '../../icons/magglass.png'
 import Price_btn from './price_btn/price_btn';
 import PropertyMenue from './property/propertymenu'
 import BedsMenue from './beds/bedsmenue'
-import roomsMenue from './rooms/roomsmenue'
 import StatusMenu from './status/statusmenu'
-import {apartments} from '../galary_data/apartments_data.jsx';
-import {cities} from '../galary_data/citie_data.jsx';
 import Gallary from '../gallary/gallary.jsx';
 class Form extends React.Component{
 
@@ -15,11 +12,17 @@ class Form extends React.Component{
         super(props)
 
         this.state={
-            choosin_city_apartments : this.props.iteam ,
+            choosin_city_apartments : [],
 
-            choosin_city_apartments_copy:this.props.iteam,  
+            choosin_city_apartments_copy:[],
+            
+            cities: [],
             
             filter_sell_apartments:this.props.is_for_sell,
+
+            img_type:this.props.img_type,
+
+            img_sorce:this.props.img_sorce,
 
             btn_names : {}
             
@@ -27,19 +30,106 @@ class Form extends React.Component{
 
     }
 
+    componentDidMount(){
+
+
+        this.getDatafromServer();
+        this.getcitydatafromserver();
+
+    }
+
+
+    getDatafromServer = () => {
+
+        fetch(` https://storage.googleapis.com/realtour/${this.props.gallarydata}-rt.json`, {
+              method: 'GET',
+        }
+    
+        ).then(response => response.json()
+    
+        ).then(success => {
+    
+            this.setState({
+    
+                choosin_city_apartments : success,
+
+                choosin_city_apartments_copy:success
+    
+        })
+    
+        }
+    
+        ).catch(error => console.log(error))
+    
+    
+        };
+
+        getcitydatafromserver(){
+
+
+            fetch(` https://storage.googleapis.com/realtour/cities-rt.json`, {
+                method: 'GET',
+          }
+      
+          ).then(response => response.json()
+      
+          ).then(success => {
+      
+              this.setState({
+      
+                 cities : success,
+      
+          })
+      
+          }
+      
+          ).catch(error => console.log(error))
+      
+      
+          };
+
+
+          slice_arr=()=>{
+
+            
+    
+            let choosin_appartment=[]
+        
+            let filterd_arr=this.state.choosin_city_apartments_copy
+        
+            for(var i=0;i<filterd_arr.length;i++){
+        
+                if(filterd_arr[i]["for_sale"]==true){
+        
+                    choosin_appartment.push(filterd_arr[i])
+        
+                }
+        
+        }
+        
+        
+        this.setState({
+    
+            choosin_city_apartments : choosin_appartment,
+
+
+    })
+            
+        }
+
+  
     search=()=>{
         let input=document.getElementById("search-input");
         let value=input.value;
-        let city=cities
         let choosen_aprtment=[]
-        for(var i=0;i<apartments.length;i++){
-            if(value==city[i]["label"]){
-                choosen_aprtment.push(apartments[i])
+        for(var i=0;i<this.state.choosin_city_apartments_copy.length;i++){
+            if(value==this.state.cities[i]["label"]){
+                choosen_aprtment.push(this.state.choosin_city_apartments_copy[i])
             }
             
         }
         if(choosen_aprtment.length==0){
-            choosen_aprtment=apartments
+            choosen_aprtment=this.state.choosin_city_apartments_copy
         }
 
         this.setState({
@@ -115,6 +205,8 @@ class Form extends React.Component{
     
 
     render(){
+
+        console.log(this.props)
         
         return(
              <div>
@@ -160,7 +252,8 @@ class Form extends React.Component{
 
 
             <Gallary items={this.state.choosin_city_apartments}
-                     main_image={this.props.main_image} 
+                     img_type={this.state.img_type} 
+                     img_sorce={this.state.img_sorce} 
                      title={this.props.title}  
                      gotfooter={this.props.bool}/>
 

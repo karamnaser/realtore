@@ -25,9 +25,9 @@ function SinglePageApartment(props){
 
               <div style={{boxShadow:"0px 0px 0px 1px"}} className="shadow-div">
 
-                    <GallarymenDetails header={apartments[id]["title"]}/>
+                    <GallarymenDetails header={apartments[id-1]["title"]}/>
 
-                    <GallaryImg src={require("../"+apartments[id]["main_image"])}/>
+                    <GallaryImg src={require("../"+apartments[id-1]["main_image"])}/>
 
                         
                    <GallarymenDetails header={getapartmentDiscreption(apartments[id])}/>
@@ -37,7 +37,7 @@ function SinglePageApartment(props){
                           onMouseLeave={disaple_heart_on_leave.bind(this)}/>
 
 
-                    <p className="apartment-price">{apartments[id]["price"] &&"$"+apartments[id]["price"]}</p>
+                    <p className="apartment-price">{apartments[id-1]["price"] &&"$"+apartments[id-1]["price"]}</p>
 
 
                     {apartments[id]["images"].map((iteam,i)=>{
@@ -70,7 +70,7 @@ function SinglePageApartment(props){
 
                               while(counter<=target.length-1){
 
-                                  target[counter].style.left="800px"
+                                  target[counter].style.left="1000px"
                                   counter++
 
                               }
@@ -79,7 +79,7 @@ function SinglePageApartment(props){
 
                             }
                             
-                              target[index].style.left="0px"
+                              target[index].style.left="1px"
                               
 
                             index++
@@ -104,7 +104,7 @@ function SinglePageApartment(props){
 
                             while(counter<=target.length-1){
 
-                                target[counter].style.left="800px"
+                                target[counter].style.left="1000px"
                                 counter++
 
                             }
@@ -112,7 +112,7 @@ function SinglePageApartment(props){
                             return
                           }
                         
-                          target[index].style.left="0px";
+                          target[index].style.left="1px";
 
                           index++
                         }
