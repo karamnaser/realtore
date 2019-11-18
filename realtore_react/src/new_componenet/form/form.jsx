@@ -35,8 +35,30 @@ class Form extends React.Component{
 
         this.getDatafromServer();
         this.getcitydatafromserver();
+        console.log(this.state.choosin_city_apartments)
 
     }
+
+     slice_arr=()=>{
+
+            
+    
+        let choosin_appartment=[]
+    
+        let filterd_arr=this.state.choosin_city_apartments_copy
+    
+        for(var i=0;i<filterd_arr.length;i++){
+    
+            if(filterd_arr[i]["for_sale"]==true){
+    
+                choosin_appartment.push(filterd_arr[i])
+    
+            }
+    
+    }
+    console.log(this.state.choosen_aprtment)
+    return choosin_appartment;
+}
 
 
     getDatafromServer = () => {
@@ -89,33 +111,7 @@ class Form extends React.Component{
           };
 
 
-          slice_arr=()=>{
-
-            
-    
-            let choosin_appartment=[]
-        
-            let filterd_arr=this.state.choosin_city_apartments_copy
-        
-            for(var i=0;i<filterd_arr.length;i++){
-        
-                if(filterd_arr[i]["for_sale"]==true){
-        
-                    choosin_appartment.push(filterd_arr[i])
-        
-                }
-        
-        }
-        
-        
-        this.setState({
-    
-            choosin_city_apartments : choosin_appartment,
-
-
-    })
-            
-        }
+         
 
   
     search=()=>{
@@ -251,7 +247,7 @@ class Form extends React.Component{
             </div>
 
 
-            <Gallary items={this.state.choosin_city_apartments}
+            <Gallary items={window.location.pathname=="/Sell" ? this.slice_arr() :this.state.choosin_city_apartments}
                      img_type={this.state.img_type} 
                      img_sorce={this.state.img_sorce} 
                      title={this.props.title}  
