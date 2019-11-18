@@ -5,6 +5,8 @@ import Form from './new_componenet/form/form'
 import './App.css';
 import HomePage  from './new_componenet/homePage/homepage'
 import HeaderNave from './new_componenet/header copy/header-navigation';
+import {apartments} from './new_componenet/galary_data/apartments_data'
+import {cities} from './new_componenet/galary_data/citie_data'
 import  { BrowserRouter as Router
   ,Switch
   ,Route
