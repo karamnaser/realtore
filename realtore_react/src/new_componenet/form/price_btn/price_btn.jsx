@@ -47,11 +47,6 @@ class Price_btn extends React.Component{
                                       
                 />
 
-
-                <input name="price" 
-                       onKeyPress={(e)=>this.props.sendvaluetostate(e)}  
-                       type="text"/>
-
             </div>
 
                 <ul style={{listStyle:"none",width:"60%"}}>
