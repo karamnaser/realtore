@@ -8,8 +8,9 @@ class BigImgSection extends React.Component{
 
         return(
 
-            <div style={{backgroundImage:"url(https://du858p10xk-flywheel.netdna-ssl.com/wp-content/uploads/2017/11/54.jpg)",padding: "88px",
-            backgroundSize :"cover"}}>
+            <div style={{backgroundImage:"url(https://du858p10xk-flywheel.netdna-ssl.com/wp-content/uploads/2017/11/54.jpg)",
+                         padding: "88px",backgroundSize :"cover"}}
+                         className="bigimg-wraper">
 
                  <div style={paragraph_style}>
         
@@ -23,7 +24,10 @@ class BigImgSection extends React.Component{
                 </div>
         
                 <div>
-                    <ul style={list_style}>
+                    <ul style={list_style}
+                        className="bigimg-nav">
+
+
                         {navbar.map((iteam)=>{
                           return(
         
@@ -32,11 +36,15 @@ class BigImgSection extends React.Component{
                             )
         
                         })}
+
+
                     </ul>
         
                 </div>
         
-                <div style={{display:"flex",margin:"100px auto",width:"10%"}}>
+                <div style={{display:"flex",margin:"100px auto",width:"20%"}}
+                     className="bigimg-serach-bar">
+
         
                     <div>
         

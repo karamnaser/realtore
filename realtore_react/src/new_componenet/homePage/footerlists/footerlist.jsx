@@ -7,9 +7,14 @@ render(){
 
     return(
 
-        <div className="container" style={{display:"flex",margin:"64px auto",justifyContent:"space-between"}}>
+        <div className="container footerlist" 
+             style={{display:"flex",margin:"64px auto",justifyContent:"space-between"}}>
+
                     
-        {this.props.list_iteams.map((iteam)=>{
+        {
+            
+            this.props.list_iteams.map((iteam)=>{
+
 
             return(
                 <div style={{textAlign:"left",width:"25%"}}>
@@ -29,7 +34,7 @@ render(){
                                 return(
 
 
-                                    <li><a href="/">{listiteam}</a></li>
+                                    <li className="footerlist-iteam"><a href="/">{listiteam}</a></li>
 
 
                                 )

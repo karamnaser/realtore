@@ -74,15 +74,17 @@ class Gallary extends React.Component{
        
         let gallery_got_footer=this.props.gotfooter;
 
+        
+
         let iteam_div = this.props.items.map((item,i) => {
 
             return ( 
 
                         <div key={item["id"]} 
-                             className="div col-4 position-relative"
+                             className="div col-lg-4 col-md-6 col-sm-12 position-relative"
                              apartment-id={i}
                         >
-                            <Link to={"apartment/"+item["id"]}>
+                            <Link to={this.props.img_type==="apartments" ? "apartment/"+item["id"] : "/"}>
                                 <div style={{boxShadow:"0px 0px 0px 1px"}} className="shadow-div">
                                 
 

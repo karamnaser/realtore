@@ -14,11 +14,10 @@ class NaveMenue extends React.Component{
 
             activelist: -1,
 
-            display:"flex",
-
-            listStyle:"none",
+            isMobileOpen: this.isMobileOpen,
 
         };
+
         
         
     }
@@ -78,10 +77,12 @@ class NaveMenue extends React.Component{
                 
                 return (
 
-                    <div style={{display:"flex"}}>
+                    <div  className="nav-menue"
+                          style={{display:"flex"}}>
 
+                              
                             {links}
-
+    
                     </div>
 
                     )

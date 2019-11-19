@@ -65,7 +65,7 @@ class InnerMenue extends React.Component{
                     display:"flex",
                     flexDirection:"row",
                     position:"absolute",
-                    top:"60px",left:"0",
+                    top:"80px",left:"0",
                     margin:"0",
                     zIndex:"999",
                     justifyContent:"space-around"

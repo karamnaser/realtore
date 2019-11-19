@@ -7,7 +7,7 @@ class HomePageStatistic extends React.Component{
 
         return(
 
-            <div className="container"
+            <div className="container homepage-statistic"
             style={{textAlign:"left"}}>
 
               <div style={{marginBottom:"30px"}} > 

@@ -10,16 +10,19 @@ class BigAdvertise extends React.Component{
 
         return(
 
-            <div style={img_position}>
+            <div className="bigadvertise"
+                 style={img_position}>
 
     
-            <div style={{width:"50%"}}>
+            <div className="bigadvertise-img" 
+                 style={{width:"50%"}}>
 
                 <img src={houseimg} width={"100%"}/>
 
             </div>
 
-            <div style={{textAlign: "left",margin:"auto"}} >
+            <div className="bigadvirtise-paragraph"
+                 style={{textAlign: "left",margin:"auto"}} >
 
 
                 <div>

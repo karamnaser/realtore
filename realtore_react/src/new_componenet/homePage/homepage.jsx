@@ -4,6 +4,7 @@ import HomePageGallary from './homepagegallary'
 import HomePageStatistic from './hompagestatistic/homepagestatistics'
 import  FooterList from './footerlists/footerlist'
 import  BigAdvertise from './bigadvertise/bigAdvertise'
+import './homepage.css'
  
 class HomePage extends  React.Component{
      constructor(props){
@@ -81,7 +82,7 @@ class HomePage extends  React.Component{
                 <div className="container">
 
                     <HomePageGallary items={this.state.iteam.slice(0,3)}
-                                    gallery_got_footer={true}/>
+                                     gotfooter={true}/>
 
                 </div>
                 

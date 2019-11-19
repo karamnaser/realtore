@@ -77,7 +77,7 @@ class HomePageGallary extends React.Component{
             return ( 
 
                         <div key={iteam["id"]} 
-                             className="div col-4 position-relative"
+                             className="homepagegallary col-lg-4 col-sm-12 position-relative"
                              apartment-id={i}
                         >
                             <Link to={"apartment/"+iteam["id"]}>
