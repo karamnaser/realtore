@@ -54,7 +54,7 @@ class StatusMenu extends React.Component{
         })
         return(
 
-        <div id="status-menu" 
+        <div id="status-menu"  
              style={{position:"relative"}}
         >
             

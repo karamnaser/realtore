@@ -41,7 +41,7 @@ class PropertyMenue extends React.Component{
         })
 
         return(
-            <div id="propert-menu" 
+            <div id="propert-menu"
                  style={{position:"relative"}}
             >
                 

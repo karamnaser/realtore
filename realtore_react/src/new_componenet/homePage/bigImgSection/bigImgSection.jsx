@@ -1,6 +1,18 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
 class BigImgSection extends React.Component{
+
+    constructor(props){
+
+        super(props);
+
+        this.state={
+
+        }
+
+
+    }
 
     render(){
 
@@ -42,25 +54,21 @@ class BigImgSection extends React.Component{
         
                 </div>
         
-                <div style={{display:"flex",margin:"100px auto",width:"20%"}}
+                <div style={{display:"flex",margin:"100px auto",width:"10%"}}
                      className="bigimg-serach-bar">
 
         
                     <div>
+
+                        <Link to={"/apartments"}>
         
-                        <input id="search-input"
-                               style={{...input_style,width:"201px",height:"36px"}} 
-                               type="text"/>
+                                <button style={btn_style}>
         
-                    </div>
+                                         go to apartment page
         
-                    <div style={{width:"40px", height:"36px"}}>
-        
-                        <button onClick={()=>this.search()} style={btn_style}>
-        
-                                search
-        
-                         </button>
+                                </button>
+
+                         </Link>
         
                      </div>
         
@@ -114,9 +122,7 @@ let btn_style={
 
     border:"1px solid gray",
 
-    borderTopRightRadius:"2px",
-
-    borderBottomRightRadius:"2px"
+    borderRadius: "25px"
 
 }
 export default BigImgSection

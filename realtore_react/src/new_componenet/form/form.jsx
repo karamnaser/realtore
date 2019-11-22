@@ -17,6 +17,8 @@ class Form extends React.Component{
             choosin_city_apartments_copy:[],
             
             cities: [],
+
+            openfilterlist:false,
             
             filter_sell_apartments:this.props.is_for_sell,
 
@@ -198,6 +200,14 @@ class Form extends React.Component{
 
         }
 
+
+        openfilterlist=()=>{
+
+            this.setState({openfilterlist:!this.state.openfilterlist})
+
+
+        }
+
     
 
     render(){
@@ -207,44 +217,98 @@ class Form extends React.Component{
         return(
              <div>
 
-                <div id="form" className="d-flex m-4">
+              {
+                this.props.img_type=="apartments" 
 
-                    <div style={{display:"flex",margin:"0 10px"}}>
+                      &&
+                  
 
-                        <div>
+                    <div id="form" className="d-flex m-4">
 
-                            <input id="search-input"
-                                   style={{...input_style,width:"201px",height:"36px"}} 
-                                   type="text"/>
+                        <div style={{display:"flex",margin:"0 10px",position:"relative"}}>
 
-                        </div>
+                            <div>
 
-                        <div style={{width:"40px", height:"36px"}}>
+                                <input id="search-input"
+                                      style={{...input_style,width:"201px",height:"36px"}} 
+                                      type="text"/>
 
-                                <button onClick={()=>this.search()} style={{...style}}>
+                            </div>
 
-                                <img style={{width:"100%",height:"100%"}} 
-                                     src={magglass}/>
+                            <div style={{width:"40px", height:"36px"}}>
 
-                                 </button>
+                                    <button onClick={()=>this.search()} style={{...style}}>
 
-                        </div>
+                                         <img style={{width:"100%",height:"100%"}} 
+                                              src={magglass}/>
+
+                                    </button>
+
+                            </div>
+
+                          </div>
+
+
+                    <div>
+
+                     
+                     <button className="d-lg-none"
+                             style={filter_btn_style}
+                             onClick={()=>this.openfilterlist()}>  
+                             
+
+                        filter
+
+
+                     </button>
+
+                    {
+                        this.state.openfilterlist 
+
+                            &&
+
+                        <div style={{padding: "35px 0px",
+                             display:"flex",
+                             justifyContent:"flex-start",
+                             position:"absolute",
+                             zIndex:"999",
+                             background:"white",
+                             left:"0px",
+                             top:"160px",                            
+                             width:"107vw"}}>
+
+
+                            <Price_btn sendvaluetostate={this.getbuttonvalu}/>
+
+                            <PropertyMenue sendvaluetostate={this.getbuttonvalu}/>
+
+                            <BedsMenue sendvaluetostate={this.getbuttonvalu}/>
+
+                            <StatusMenu  sendvaluetostate={this.getbuttonvalu}/>
+
+                                
+                     </div>
+                     }
+                       
 
                     </div>
 
+                <div className="d-none d-lg-flex">
 
-                <Price_btn sendvaluetostate={this.getbuttonvalu}/>
 
-                <PropertyMenue sendvaluetostate={this.getbuttonvalu}/>
+                    <Price_btn sendvaluetostate={this.getbuttonvalu}/>
 
-                <BedsMenue sendvaluetostate={this.getbuttonvalu}/>
+                    <PropertyMenue sendvaluetostate={this.getbuttonvalu}/>
 
-                <StatusMenu  sendvaluetostate={this.getbuttonvalu}/>
+                    <BedsMenue sendvaluetostate={this.getbuttonvalu}/>
 
-                <roomsMenue/>
+                    <StatusMenu  sendvaluetostate={this.getbuttonvalu}/>
+
+                </div>
 
                 
             </div>
+    }
 
 
             <Gallary items={window.location.pathname=="/Sell" ? this.slice_arr() :this.state.choosin_city_apartments}
@@ -282,5 +346,18 @@ let input_style={
     borderBottomLeftRadius:"2px"
 
 }
+
+let filter_btn_style={
+
+    border:"1px solid gray",
+
+    borderRadius:"3px",
+
+    background:"white",
+
+    margin:"0 5px"
+    
+}
+
 
 export default Form;

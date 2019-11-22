@@ -12,7 +12,8 @@ class Price_btn extends React.Component{
     }
     render(){
         return(
-            <div id="price-menu" style={{position:"relative"}}>
+            <div id="price-menu" 
+                 style={{position:"relative"}}>
                 
             <button style={{...price_btn_style}} onClick={()=>{this.make_list_active()}}>
 
