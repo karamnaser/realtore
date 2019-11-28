@@ -35,7 +35,7 @@ class HeaderRightside extends React.Component{
 
                 <div>
 
-                    <a href={iteam[1]}>{iteam[0]}</a>
+                    <a onClick={()=>this.props.showpopup()}>{iteam[0]}</a>
 
                 </div>
 

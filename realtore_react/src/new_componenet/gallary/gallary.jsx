@@ -81,7 +81,7 @@ class Gallary extends React.Component{
             return ( 
 
                         <div key={item["id"]} 
-                             className="div col-lg-4 col-md-6 col-sm-12 position-relative"
+                             className="apartments-gallary col-lg-3 col-md-6 col-sm-12 position-relative"
                              apartment-id={i}
                         >
                             <Link to={this.props.img_type==="apartments" ? "apartment/"+item["id"] : "/"}>
@@ -105,7 +105,7 @@ class Gallary extends React.Component{
                                                onMouseLeave={disaple_heart_on_leave.bind(this)}/>
 
 
-                                        <p className="apartment-price">{item["price"] &&"$"+item["price"]}</p> 
+                                        <p className="apartments-price">{item["price"] &&"$"+item["price"]}</p> 
                                         
 
                                 </div>
@@ -118,12 +118,14 @@ class Gallary extends React.Component{
         )});
 
         return(  
+
+                <div className="container">
                     <div className="row">
 
                         {iteam_div}
 
                     </div>
-                    
+                </div>    
             )
     }
     

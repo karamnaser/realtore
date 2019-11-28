@@ -16,7 +16,7 @@ class HomePageStatistic extends React.Component{
 
               </div>
 
-              <div style={{display:"flex"}}>
+              <div style={{display:"flex",textAlign: "center",justifyContent: "space-around",margin:"20px 0px"}}>
 
                   <div>
 

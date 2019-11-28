@@ -101,7 +101,7 @@ class HomePageGallary extends React.Component{
                                                onMouseLeave={disaple_heart_on_leave.bind(this)}/>
 
 
-                                        <p className="apartment-price">{iteam["price"] &&"$"+iteam["price"]}</p> 
+                                        <p className="apartments-price">{iteam["price"] &&"$"+iteam["price"]}</p> 
                                         
 
                                 </div>

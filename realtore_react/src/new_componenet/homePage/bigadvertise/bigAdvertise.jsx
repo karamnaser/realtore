@@ -22,7 +22,7 @@ class BigAdvertise extends React.Component{
             </div>
 
             <div className="bigadvirtise-paragraph"
-                 style={{textAlign: "left",margin:"auto"}} >
+                 style={{textAlign: "left",margin:"auto 10px"}} >
 
 
                 <div>
@@ -49,7 +49,7 @@ class BigAdvertise extends React.Component{
         
                         <div style={{width:"40px", height:"36px"}}>
         
-                                <button onClick={()=>this.search()} style={btn_style}>
+                                <button style={btn_style}>
         
                                         search
         

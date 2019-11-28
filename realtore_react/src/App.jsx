@@ -23,12 +23,12 @@ function App() {
           <Route path="/home" component={HomePage}/>
 
 
-
           <Route path={"/apartment/:id"} component={SinglePageApartment}/>
             
     
       
-          <Route path="/sell" component={()=><Form img_type="apartments" img_sorce="main_image" title={"title"} bool={true} gallarydata={"apartments"}/>}>
+          <Route path="/sell" component={()=><Form img_type="apartments" img_sorce="main_image" title={"title"} 
+                                                   bool={true} gallarydata={"apartments"}/>}>
             
           </Route>
           
@@ -52,13 +52,14 @@ function App() {
                   gallarydata={"cities"}/>}>
 
         </Route>
-
+        
+        <Route path="/" component={HomePage}/>
     </Switch>
     </div>
     </Router>
   );
 }
 
+
+
 export default App;
-{/* <Gallary items={apartments} title={"title"} img_index_name={"main_image"} gotfooter={true}/>
-      <Gallary items={cities} title={"label"} img_index_name={"image"}/> */}

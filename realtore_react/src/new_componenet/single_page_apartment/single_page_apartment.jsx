@@ -5,6 +5,7 @@ import Heart from '../gallary/heart'
 import './apartment.css'
 import rightarrowicon from '../../icons/right-arrow.png'
 import leftarrowicon from '../../icons/left-arrow.png'
+import '../form/serachpagemobile.css'
 
  class SinglePageApartment extends React.Component{
     constructor(props){
@@ -43,7 +44,7 @@ import leftarrowicon from '../../icons/left-arrow.png'
 
         
 
-})
+}, ()=>console.log(this.state.apartments[this.state.id+1]["address"]))
 
 }
 
@@ -112,7 +113,7 @@ getapartmentDiscreption(aprtment){
 
      
         
-        <div  className="apartment  position-relative">
+        <div  className="apartment  position-relative w-50">
 
               {this.state.apartments.length>0 ?
 
@@ -133,6 +134,7 @@ getapartmentDiscreption(aprtment){
                     <p className="apartment-price">{this.state.apartments[this.state.id]["price"] &&"$"+this.state.apartments[this.state.id]["price"]}</p>
 
 
+                    
                     {this.state.apartments[this.state.id]["images"].map((iteam,i)=>{
 
                         return(
@@ -148,11 +150,18 @@ getapartmentDiscreption(aprtment){
 
                              )
 
-                            })}
-
-
-                </div>
+                            })
+                            }
+                            <div id="map-container-google-1" class="z-depth-1-half map-container" style={{height: "500px"}}>
                 
+                                  <iframe src={`https://maps.google.com/maps?q=${this.state.apartments[this.state.id]["address"]}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0"
+                                          style={{border:"0px"}} allowfullscreen></iframe>
+                        
+                            </div>
+
+                  
+                    
+                </div>
                 :"loading"}
 
                 <button  className="right-arrow" 
@@ -166,7 +175,7 @@ getapartmentDiscreption(aprtment){
 
                               while(counter<=this.state.target.length-1){
 
-                                  this.state.target[counter].style.left="1000px"
+                                  this.state.target[counter].style.left="2000px"
                                   counter++
 
                               }
@@ -200,7 +209,7 @@ getapartmentDiscreption(aprtment){
 
                             while(counter<=this.state.target.length-1){
 
-                                this.state.target[counter].style.left="1000px"
+                                this.state.target[counter].style.left="2000px"
                                 counter++
 
                             }
@@ -217,6 +226,7 @@ getapartmentDiscreption(aprtment){
 
                         <img src={leftarrowicon}/>
 
+                        
 
                 </button>
                         

@@ -14,11 +14,7 @@
         }
 
 
-        .bigimg-serach-bar{
-
-            width: 15% !important;
-
-        }
+        
 
         .homepagegallary .apartment-price{
 
@@ -40,7 +36,7 @@
 
         .bigadvertise{
 
-            margin-bottom: 90px !important;
+            margin-bottom: 236px !important;
             
         }
 
@@ -69,3 +65,19 @@
         }
         
     }
+
+    @media only screen and (max-device-width: 1024px){
+
+
+        
+        .container.footerlist{
+
+            max-width:100% !important;
+
+        }
+
+    }
+
+    
+
+    

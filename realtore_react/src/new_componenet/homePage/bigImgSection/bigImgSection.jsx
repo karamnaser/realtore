@@ -43,7 +43,7 @@ class BigImgSection extends React.Component{
                         {navbar.map((iteam)=>{
                           return(
         
-                                <li><a style={{color:"white",textDecoration:"none"}} href="/">{iteam}</a></li>        
+                                <li><a style={{color:"black",textDecoration:"none"}} href="/">{iteam}</a></li>        
         
                             )
         
@@ -54,7 +54,7 @@ class BigImgSection extends React.Component{
         
                 </div>
         
-                <div style={{display:"flex",margin:"100px auto",width:"10%"}}
+                <div style={{display:"flex",margin:"100px 0",justifyContent:"center"}}
                      className="bigimg-serach-bar">
 
         
@@ -95,9 +95,7 @@ let list_style={
 
     display: "flex",
 
-    width: "40%",
-
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
 
     margin: "20px auto",
 

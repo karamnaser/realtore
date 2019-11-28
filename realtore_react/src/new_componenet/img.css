@@ -1,6 +1,14 @@
 .shadow-div {
     width: 100%;
     height: 80%;
+    color: black;
+   
+}
+
+.apartments-gallary a{
+
+    text-decoration: none;
+
 }
 
 .Gallary-img {

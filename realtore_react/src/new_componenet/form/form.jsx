@@ -1,10 +1,15 @@
 import React from 'react';
 import magglass from '../../icons/magglass.png'
 import Price_btn from './price_btn/price_btn';
-import PropertyMenue from './property/propertymenu'
-import BedsMenue from './beds/bedsmenue'
-import StatusMenu from './status/statusmenu'
+import PriceMenue from './price_btn/price_menue'
+import PropertyBtn from './property/property_btn'
+import PropertyMenu from './property/property_menue'
+import BedsBtn from './beds/bedsBtn'
+import BedsMenu  from './beds/beds_menu'
+import StatusBtn from './status/status_Btn'
+import StatusMenu from './status/status_menue'
 import Gallary from '../gallary/gallary.jsx';
+
 class Form extends React.Component{
 
     constructor(props){
@@ -12,21 +17,24 @@ class Form extends React.Component{
         super(props)
 
         this.state={
+
             choosin_city_apartments : [],
 
-            choosin_city_apartments_copy:[],
+            apartments:[],
             
             cities: [],
 
-            openfilterlist:false,
-            
-            filter_sell_apartments:this.props.is_for_sell,
+            openfilterlist : false,
+
+            opendmenue: -1 ,
 
             img_type:this.props.img_type,
 
             img_sorce:this.props.img_sorce,
 
-            btn_names : {}
+            btn_names : {},
+
+            search: ''
             
         }
 
@@ -35,32 +43,66 @@ class Form extends React.Component{
     componentDidMount(){
 
 
+        if(window.location.pathname=="/Sell"){
+
+            this.getcitydatafromserver();
+            this.getsellapartmentfromserver();
+
+        }
+
+        else{
+
         this.getDatafromServer();
         this.getcitydatafromserver();
-        console.log(this.state.choosin_city_apartments)
 
     }
-
-     slice_arr=()=>{
-
-            
-    
-        let choosin_appartment=[]
-    
-        let filterd_arr=this.state.choosin_city_apartments_copy
-    
-        for(var i=0;i<filterd_arr.length;i++){
-    
-            if(filterd_arr[i]["for_sale"]==true){
-    
-                choosin_appartment.push(filterd_arr[i])
-    
-            }
-    
-    }
-    console.log(this.state.choosen_aprtment)
-    return choosin_appartment;
 }
+
+    make_list_active = (i)=> {
+        this.setState({
+            opendmenue: this.state.opendmenue === i ? -1 : i
+        })
+    }
+
+
+    getsellapartmentfromserver=() => {
+
+        fetch(` https://storage.googleapis.com/realtour/${this.props.gallarydata}-rt.json?`, {
+              method: 'GET',
+        }
+    
+        ).then(response => response.json()
+    
+        ).then(success => {
+        
+            for(var i=0;i<success.length;i++){
+        
+                if(success[i]["for_sale"]!=true){
+        
+                     success.shift();
+        
+                }
+        
+        }
+    
+            this.setState({
+    
+                choosin_city_apartments : success,
+
+                apartments:success
+    
+        })
+    
+        }
+    
+        ).catch(error => console.log(error))
+    
+    
+        };
+
+    
+
+
 
 
     getDatafromServer = () => {
@@ -77,7 +119,7 @@ class Form extends React.Component{
     
                 choosin_city_apartments : success,
 
-                choosin_city_apartments_copy:success
+                apartments:success
     
         })
     
@@ -86,6 +128,10 @@ class Form extends React.Component{
         ).catch(error => console.log(error))
     
     
+        };
+
+        updateSearch = (e) => {
+            this.setState({ search: e.target.value });
         };
 
         getcitydatafromserver(){
@@ -117,17 +163,15 @@ class Form extends React.Component{
 
   
     search=()=>{
-        let input=document.getElementById("search-input");
-        let value=input.value;
         let choosen_aprtment=[]
-        for(var i=0;i<this.state.choosin_city_apartments_copy.length;i++){
-            if(value==this.state.cities[i]["label"]){
-                choosen_aprtment.push(this.state.choosin_city_apartments_copy[i])
+        for(var i=0;i<this.state.apartments.length;i++){
+            if(this.state.search===this.state.cities[i]["label"]){
+                choosen_aprtment.push(this.state.apartments[i])
             }
             
         }
         if(choosen_aprtment.length==0){
-            choosen_aprtment=this.state.choosin_city_apartments_copy
+            choosen_aprtment=this.state.apartments
         }
 
         this.setState({
@@ -137,12 +181,14 @@ class Form extends React.Component{
           console.log(this.state.choosin_city_apartments)
 
           this.setState({
-            choosin_city_apartments_copy: [...this.state.choosin_city_apartments]
+            apartments: [...this.state.choosin_city_apartments]
           })
 
     }
 
     getbuttonvalu=(e)=>{
+
+        console.log("getbuttonvalue")
         
         let target=e.target;
 
@@ -152,28 +198,39 @@ class Form extends React.Component{
 
         this.state.btn_names[name]=value
 
-        console.log(this.state.btn_names)
-
         this.filter()
 
     }
 
 
     filter=()=>{
+
+        console.log("filter")
         
         let choosin_appartment=[]
 
-        let filterd_arr=this.state.choosin_city_apartments_copy
+        let filterd_arr=this.state.apartments
 
         let bool=false
 
-        console.log(filterd_arr)
         
         for(var i=0;i<filterd_arr.length;i++){
 
             for(let key in this.state.btn_names){
-            
-            if(filterd_arr[i][key]!=this.state.btn_names[key]){
+
+                if(key=="status"){
+
+                    if(!filterd_arr[i][this.state.btn_names[key]]){
+
+                        bool=false;
+
+                        break;
+                    }
+
+            }
+        
+               else if(filterd_arr[i][key]!=this.state.btn_names[key]){
+
                     bool=false
 
                     break
@@ -191,13 +248,14 @@ class Form extends React.Component{
         }
 
     }
+
+        
         
         this.setState({
+            choosin_city_apartments: choosin_appartment
+        })
 
-            choosin_city_apartments: [...choosin_appartment]
-            
-          })
-
+         
         }
 
 
@@ -211,9 +269,10 @@ class Form extends React.Component{
     
 
     render(){
+ 
 
-        console.log(this.props)
-        
+        console.log("chosen aprtment arr", this.state.choosin_city_apartments, 'search', this.state.search);
+
         return(
              <div>
 
@@ -223,7 +282,7 @@ class Form extends React.Component{
                       &&
                   
 
-                    <div id="form" className="d-flex m-4">
+                    <div id="form" className="d-flex my-4 container justify-content-center">
 
                         <div style={{display:"flex",margin:"0 10px",position:"relative"}}>
 
@@ -231,7 +290,8 @@ class Form extends React.Component{
 
                                 <input id="search-input"
                                       style={{...input_style,width:"201px",height:"36px"}} 
-                                      type="text"/>
+                                      type="text"
+                                      onChange={ this.updateSearch }/>
 
                             </div>
 
@@ -267,26 +327,38 @@ class Form extends React.Component{
 
                             &&
 
-                        <div style={{padding: "35px 0px",
-                             display:"flex",
-                             justifyContent:"flex-start",
-                             position:"absolute",
-                             zIndex:"999",
-                             background:"white",
-                             left:"0px",
-                             top:"160px",                            
-                             width:"107vw"}}>
+                        <div className="filter_list" 
+                             style={{padding: "35px 0px",
+                                     display:"flex",
+                                     justifyContent:"space-evenly",
+                                     position:"absolute",
+                                     zIndex:"999",
+                                     background:"white",
+                                     left:"0px",
+                                     top:"220px",                            
+                                     width:"107vw"}}>
+                    
+                            <div>
+                                <Price_btn make_list_active={this.make_list_active}/>
+                                {this.state.opendmenue==1 && <PriceMenue sendvaluetostate={this.getbuttonvalu}/>}
+                            </div>
+                            
+                            <div>
+                                <PropertyBtn make_list_active={this.make_list_active}/>
+                                {this.opendmenue==2 && <PropertyMenu sendvaluetostate={this.getbuttonvalu}/>}
+                            </div>
+
+                            <div>
+                                <BedsBtn make_list_active={this.make_list_active}/>
+                                {this.state.opendmenue==3 && <BedsMenu sendvaluetostate={this.getbuttonvalu}/>}
+                            </div> 
+
+                            <div>   
+                                <StatusBtn make_list_active={this.make_list_active}/>
+                                {this.state.opendmenue==4 && <StatusMenu sendvaluetostate={this.getbuttonvalu}/>}
+                            </div>
 
 
-                            <Price_btn sendvaluetostate={this.getbuttonvalu}/>
-
-                            <PropertyMenue sendvaluetostate={this.getbuttonvalu}/>
-
-                            <BedsMenue sendvaluetostate={this.getbuttonvalu}/>
-
-                            <StatusMenu  sendvaluetostate={this.getbuttonvalu}/>
-
-                                
                      </div>
                      }
                        
@@ -296,13 +368,54 @@ class Form extends React.Component{
                 <div className="d-none d-lg-flex">
 
 
-                    <Price_btn sendvaluetostate={this.getbuttonvalu}/>
+                     <div style={{position:"relative"}}>
 
-                    <PropertyMenue sendvaluetostate={this.getbuttonvalu}/>
+                                <Price_btn make_list_active={this.make_list_active}/>
 
-                    <BedsMenue sendvaluetostate={this.getbuttonvalu}/>
+                                
+                                {
+                                    this.state.opendmenue==1 
+                                
+                                         &&
 
-                    <StatusMenu  sendvaluetostate={this.getbuttonvalu}/>
+                                    <PriceMenue sendvaluetostate={this.getbuttonvalu}/>    
+
+                                }    
+
+                               
+
+                    </div>
+
+                    <div style={{position:"relative"}}>
+
+                        <PropertyBtn make_list_active={this.make_list_active}/>
+
+                        {
+                            this.state.opendmenue==2
+
+                                 &&
+
+                             <PropertyMenu sendvaluetostate={this.getbuttonvalu}/>
+
+                        }
+
+                    </div>
+                    <div style={{position:"relative"}}>
+
+                        <BedsBtn make_list_active={this.make_list_active}/>
+
+                        {this.state.opendmenue==3 && <BedsMenu sendvaluetostate={this.getbuttonvalu}/>}
+
+                    </div>
+
+                    <div style={{position:"relative"}}>
+
+
+                        <StatusBtn make_list_active={this.make_list_active}/>
+
+                        {this.state.opendmenue==4 && <StatusMenu sendvaluetostate={this.getbuttonvalu}/>}
+
+                    </div>
 
                 </div>
 
@@ -311,7 +424,7 @@ class Form extends React.Component{
     }
 
 
-            <Gallary items={window.location.pathname=="/Sell" ? this.slice_arr() :this.state.choosin_city_apartments}
+            <Gallary items={this.state.choosin_city_apartments}
                      img_type={this.state.img_type} 
                      img_sorce={this.state.img_sorce} 
                      title={this.props.title}  
