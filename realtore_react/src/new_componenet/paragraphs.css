@@ -91,6 +91,16 @@
            
        }
 
+       @media(min-width: 1440px){
+
+        .apartments-price {
+       
+               bottom: 70px;
+               
+               
+           }
+        }
+
        .homepagegallary .apartments-price{
 
         bottom: 67px;

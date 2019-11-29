@@ -54,7 +54,7 @@ import '../header.css'
 
                             this.toggleMobileNav()
 
-                    }} className="d-lg-none d-sm-block">
+                    }} className="d-lg-none d-sm-block mx-4">
 
                         <div style={{width:"37px",height:"4px",background:"black",margin:"10px 10px"}}></div>
 

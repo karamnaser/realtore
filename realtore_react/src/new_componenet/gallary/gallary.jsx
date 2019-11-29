@@ -81,7 +81,7 @@ class Gallary extends React.Component{
             return ( 
 
                         <div key={item["id"]} 
-                             className="apartments-gallary col-lg-3 col-md-6 col-sm-12 position-relative"
+                             className="apartments-gallary col-lg-4 col-md-6 col-sm-12 position-relative"
                              apartment-id={i}
                         >
                             <Link to={this.props.img_type==="apartments" ? "apartment/"+item["id"] : "/"}>

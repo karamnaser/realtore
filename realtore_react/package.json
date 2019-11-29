@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "adb": "^0.2.0",
     "node": "^12.13.0",
     "react": "^16.11.0",
     "react-browser-detection": "^1.2.1",

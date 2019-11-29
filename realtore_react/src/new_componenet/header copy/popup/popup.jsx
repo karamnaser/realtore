@@ -131,7 +131,7 @@ let popupleftside_style={
 
     position:"relative",
 
-    zIndex:"999",
+    zIndex:"1000",
 
     width:"83%"
 }
@@ -142,7 +142,7 @@ let popup_right_side={
 
     position:"relative",
 
-    zIndex:"999",
+    zIndex:"1000",
 
     display: "flex",
 

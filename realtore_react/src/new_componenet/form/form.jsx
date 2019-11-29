@@ -178,7 +178,6 @@ class Form extends React.Component{
             choosin_city_apartments: [...choosen_aprtment]
           })
 
-          console.log(this.state.choosin_city_apartments)
 
           this.setState({
             apartments: [...this.state.choosin_city_apartments]
@@ -188,7 +187,6 @@ class Form extends React.Component{
 
     getbuttonvalu=(e)=>{
 
-        console.log("getbuttonvalue")
         
         let target=e.target;
 
@@ -205,7 +203,6 @@ class Form extends React.Component{
 
     filter=()=>{
 
-        console.log("filter")
         
         let choosin_appartment=[]
 
@@ -269,9 +266,6 @@ class Form extends React.Component{
     
 
     render(){
- 
-
-        console.log("chosen aprtment arr", this.state.choosin_city_apartments, 'search', this.state.search);
 
         return(
              <div>
@@ -359,6 +353,22 @@ class Form extends React.Component{
                             </div>
 
 
+                            
+                            <div style={{textAlign:"left"}}>
+
+                                    <button style={{...filter_btn_style,width:"79%"}} onClick={()=>{
+
+                                            this.setState({choosin_city_apartments:[...this.state.apartments],btn_names:{}})
+
+
+                                                }}>show all apartments
+                                                
+                                                
+                                    </button>
+
+                            </div>
+
+
                      </div>
                      }
                        
@@ -416,6 +426,17 @@ class Form extends React.Component{
                         {this.state.opendmenue==4 && <StatusMenu sendvaluetostate={this.getbuttonvalu}/>}
 
                     </div>
+
+                </div>
+
+                <div>
+
+                    <button className="d-lg-block d-none" style={filter_btn_style} onClick={()=>{
+
+                        this.setState({choosin_city_apartments:[...this.state.apartments],btn_names:{}})
+
+
+                    }}>show all apartments</button>
 
                 </div>
 
